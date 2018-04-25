@@ -36,10 +36,16 @@ class Concenration
     }
     
     init(numberOfPairsOfCards: Int) {
+        var unShuffledCards: [Card] = []
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
-            cards += [card, card]
+            unShuffledCards += [card, card]
         }
         //TODO: Shuffle the cards
+        while !unShuffledCards.isEmpty {
+            let randomIndex = Int(arc4random_uniform(UInt32(unShuffledCards.count)))
+            let card = unShuffledCards.remove(at: randomIndex)
+            cards.append(card)
+        }
     }
 }
